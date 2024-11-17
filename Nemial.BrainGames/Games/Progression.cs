@@ -4,44 +4,38 @@ namespace Nemial.BrainGames.Games;
 
 public class Progression : IGame
 {
+    private const string GameName = "Brain Progression";
+    private const string GameDescription = "What number is missing in the progression?";
+
+    private const int ProgressionLength = 10;
+    private const string HiddenValue = "...";
+
+    private readonly Random _random = new();
+
     public void Run()
     {
-        Console.WriteLine("Добро пожаловать в Brain Progression!");
-        Console.WriteLine("Определите спрятанное число число!");
+        var progression = GenProgression();
+        var hiddenKey = _random.Next(0, progression.Count);
+        var hiddenNum = progression[hiddenKey];
+        progression[hiddenKey] = HiddenValue;
 
-        const int progressionLength = 10;
-        const string hiddenValue = "...";
+        var question = string.Join(", ", progression.ToArray());
 
+        GameEngine.StartGame(GameName, GameDescription, question, hiddenNum);
+    }
 
-        var random = new Random();
-        var step = random.Next(1, 5);
-        var startNum = random.Next(1, 256);
-
-
+    private List<string> GenProgression()
+    {
+        var step = _random.Next(1, 5);
+        var startNum = _random.Next(1, 256);
         var progression = new List<string>();
 
-        for (var i = 0; progression.Count < progressionLength; i += 1)
+        for (var i = 0; progression.Count < ProgressionLength; i += 1)
         {
             var progressionItem = startNum + i * step;
             progression.Add(progressionItem.ToString());
         }
 
-        var hiddenKey = random.Next(0, progression.Count);
-        var hiddenNum = progression[hiddenKey];
-        progression[hiddenKey] = hiddenValue;
-
-        Console.WriteLine(string.Join(", ", progression.ToArray()));
-        var userInput = Console.ReadLine();
-        var userAnswer = userInput?.ToLower().Trim();
-
-        if (userAnswer == hiddenNum)
-        {
-            Console.WriteLine("Вы выиграли");
-        }
-        else
-        {
-            Console.WriteLine("Вы проиграли!");
-            Console.WriteLine("Правильный ответ " + hiddenNum);
-        }
+        return progression;
     }
 }

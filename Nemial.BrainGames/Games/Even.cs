@@ -4,35 +4,17 @@ namespace Nemial.BrainGames.Games;
 
 public class Even : IGame
 {
+    private const string GameName = "Brain Even";
+    private const string GameDescription = """Answer "yes" if the number is even, otherwise answer "no".""";
+
+    private readonly Random _random = new();
+
     public void Run()
     {
-        Console.WriteLine("Добро пожаловать в Brain Even!");
-        Console.WriteLine("Напишите 'да', если число чётное, иначе 'нет'");
-        var random = new Random();
-        var number = random.Next(1, 256);
-        var correctAnswer = IsEven(number) ? "да" : "нет";
+        var number = _random.Next(1, 256);
+        var correctAnswer = IsEven(number) ? "yes" : "no";
 
-
-        Console.WriteLine(number);
-
-        var userAnswer = Console.ReadLine();
-
-        if (userAnswer is null)
-        {
-            Environment.Exit(1);
-        }
-
-        var preparedAnswer = userAnswer.Trim().ToLower();
-
-        if (preparedAnswer.Equals(correctAnswer))
-        {
-            Console.WriteLine("Вы выиграли!");
-        }
-        else
-        {
-            Console.WriteLine("Вы проиграли!");
-            Console.WriteLine("Правильный ответ: " + correctAnswer);
-        }
+        GameEngine.StartGame(GameName, GameDescription, number.ToString(), correctAnswer);
     }
 
     private static bool IsEven(int number)

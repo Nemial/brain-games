@@ -4,36 +4,23 @@ namespace Nemial.BrainGames.Games;
 
 public class Calc : IGame
 {
+    private const string GameName = "Brain Calc";
+    private const string GameDescription = "Brain Calc";
+
+    private readonly Random _random = new();
+    private readonly string[] _operations = ["+", "-", "*"];
+
     public void Run()
     {
-        Console.WriteLine("Добро пожаловать в Brain Calc!");
-        Console.WriteLine("Вычислите выражение");
-
-        string[] operations = ["+", "-", "*"];
-
-        var random = new Random();
-        var firstNum = random.Next(1, 512);
-        var secondNum = random.Next(firstNum);
-        var operationIndex = random.Next(operations.Length);
-        var operation = operations[operationIndex];
+        var firstNum = _random.Next(1, 512);
+        var secondNum = _random.Next(firstNum);
+        var operationIndex = _random.Next(_operations.Length);
+        var operation = _operations[operationIndex];
 
         var expressionResult = GetExpressionResult(firstNum, secondNum, operation);
+        var question = $"{firstNum} {operation} {secondNum}";
 
-
-        Console.WriteLine($"{firstNum} {operation} {secondNum}");
-
-        var userInput = Console.ReadLine();
-        var userAnswer = int.Parse(userInput?.Trim().ToLower() ?? string.Empty);
-
-        if (expressionResult == userAnswer)
-        {
-            Console.WriteLine("Вы выиграли");
-        }
-        else
-        {
-            Console.WriteLine("Вы проиграли!");
-            Console.WriteLine("Правильный ответ " + expressionResult);
-        }
+        GameEngine.StartGame(GameName, GameDescription, question, expressionResult.ToString());
     }
 
     private static int GetExpressionResult(int firstOperand, int secondOperand, string operation)

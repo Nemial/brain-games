@@ -4,29 +4,18 @@ namespace Nemial.BrainGames.Games;
 
 public class Prime : IGame
 {
+    private const string GameName = "Brain Prime";
+    private const string GameDescription = """Answer "yes" if given number is prime. Otherwise answer "no".""";
+
+    private readonly Random _random = new();
+
+
     public void Run()
     {
-        Console.WriteLine("Добро пожаловать в Brain Prime!");
-        Console.WriteLine("Напишите 'да' если число простое, иначе 'нет'");
-
-        var random = new Random();
-        var num = random.Next(512);
+        var num = _random.Next(512);
         var answer = IsPrime(num) ? "да" : "нет";
 
-        Console.WriteLine(num);
-
-        var userInput = Console.ReadLine();
-        var userAnswer = userInput?.Trim().ToLower() ?? string.Empty;
-
-        if (userAnswer == answer)
-        {
-            Console.WriteLine("Вы выиграли!");
-        }
-        else
-        {
-            Console.WriteLine("Вы проиграли!");
-            Console.WriteLine("Правильный ответ: " + answer);
-        }
+        GameEngine.StartGame(GameName, GameDescription, num.ToString(), answer);
     }
 
     private static bool IsPrime(int number)
