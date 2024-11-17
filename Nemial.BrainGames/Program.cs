@@ -1,9 +1,9 @@
 ﻿using Nemial.BrainGames.Core;
 using Nemial.BrainGames.Games;
 
-Console.WriteLine("Добро пожаловать в Brain Games!");
-Console.WriteLine("Введите название игры, чтобы начать!");
-Console.WriteLine("Доступные игры: even, progression, prime, gcd, calc");
+Console.WriteLine("Welcome to Brain Games!");
+Console.WriteLine("Enter the name of the game to get started!");
+Console.WriteLine("Available games: even, progression, prime, gcd, calc");
 
 var gameName = Console.ReadLine();
 var preparedGameName = gameName?.Trim().ToLower();
@@ -32,7 +32,7 @@ switch (preparedGameName)
         game.Run();
         break;
     default:
-        Console.WriteLine("Такой игры не существует!");
+        Console.WriteLine("There is no such game!");
         Environment.Exit(1);
         break;
 }
