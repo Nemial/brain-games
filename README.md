@@ -19,4 +19,4 @@ dotnet run
 
 ### Requirements
 
-* dotNet 9
+* .Net 9
