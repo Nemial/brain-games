@@ -7,6 +7,7 @@ public class Even : IGame
     private const string GameName = "Brain Even";
     private const string GameDescription = """Answer "yes" if the number is even, otherwise answer "no".""";
 
+    private readonly GameEngine _engine = new();
     private readonly Random _random = new();
 
     public void Run()
@@ -14,7 +15,7 @@ public class Even : IGame
         var number = _random.Next(1, 256);
         var correctAnswer = IsEven(number) ? "yes" : "no";
 
-        GameEngine.StartGame(GameName, GameDescription, number.ToString(), correctAnswer);
+        _engine.StartGame(GameName, GameDescription, number.ToString(), correctAnswer);
     }
 
     private static bool IsEven(int number)

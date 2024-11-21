@@ -8,6 +8,7 @@ public class Calc : IGame
     private const string GameDescription = "Brain Calc";
 
     private readonly Random _random = new();
+    private readonly GameEngine _engine = new();
     private readonly string[] _operations = ["+", "-", "*"];
 
     public void Run()
@@ -20,21 +21,17 @@ public class Calc : IGame
         var expressionResult = GetExpressionResult(firstNum, secondNum, operation);
         var question = $"{firstNum} {operation} {secondNum}";
 
-        GameEngine.StartGame(GameName, GameDescription, question, expressionResult.ToString());
+        _engine.StartGame(GameName, GameDescription, question, expressionResult.ToString());
     }
 
     private static int GetExpressionResult(int firstOperand, int secondOperand, string operation)
     {
-        switch (operation)
+        return operation switch
         {
-            case "+":
-                return firstOperand + secondOperand;
-            case "-":
-                return firstOperand - secondOperand;
-            case "*":
-                return firstOperand * secondOperand;
-            default:
-                throw new ArgumentException($"Unknown operation: {operation}");
-        }
+            "+" => firstOperand + secondOperand,
+            "-" => firstOperand - secondOperand,
+            "*" => firstOperand * secondOperand,
+            _ => throw new ArgumentException($"Unknown operation: {operation}")
+        };
     }
 }

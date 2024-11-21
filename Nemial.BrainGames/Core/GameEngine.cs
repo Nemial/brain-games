@@ -1,8 +1,8 @@
 namespace Nemial.BrainGames.Core;
 
-public static class GameEngine
+public class GameEngine
 {
-    public static void StartGame(string name, string description, string question, string answer)
+    public void StartGame(string name, string description, string question, string answer)
     {
         Console.WriteLine($"Welcome to {name}");
         Console.WriteLine(description);

@@ -10,6 +10,7 @@ public class Progression : IGame
     private const int ProgressionLength = 10;
     private const string HiddenValue = "...";
 
+    private readonly GameEngine _engine = new();
     private readonly Random _random = new();
 
     public void Run()
@@ -21,7 +22,7 @@ public class Progression : IGame
 
         var question = string.Join(", ", progression.ToArray());
 
-        GameEngine.StartGame(GameName, GameDescription, question, hiddenNum);
+        _engine.StartGame(GameName, GameDescription, question, hiddenNum);
     }
 
     private List<string> GenProgression()
