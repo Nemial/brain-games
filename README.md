@@ -7,8 +7,14 @@
 ### Installation
 
 1. Clone this repository
-2. Run commands
+2. Install application
 
 ```shell
-cargo run --release
+cargo install --path .
+```
+
+3. Run
+
+```shell
+brain-games
 ```
