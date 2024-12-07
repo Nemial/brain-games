@@ -1,11 +1,11 @@
+use crate::games::start_game;
 use rand::Rng;
 use std::collections::BTreeMap;
-use std::io;
+
+const GAME_NAME: &str = "Brain Progression";
+const GAME_DESCRIPTION: &str = "What number is missing in the progression?";
 
 pub fn start() {
-    println!("Welcome to Brain Progression!");
-    println!("What number is missing in the progression?");
-
     let mut rng = rand::thread_rng();
     let progression_length: usize = 10;
     let start_num: usize = rng.gen_range(0..512);
@@ -29,22 +29,7 @@ pub fn start() {
         question.push_str(" ");
     }
 
-    println!("{}", question);
-
-    let mut user_answer = String::new();
-
-    io::stdin()
-        .read_line(&mut user_answer)
-        .expect("Failed to read line");
-
-    let user_answer = user_answer.trim().to_lowercase();
-
-    if user_answer != answer {
-        println!("You lose!");
-        println!("Correct answer was {}", answer);
-    } else {
-        println!("You win!");
-    }
+    start_game(GAME_NAME, GAME_DESCRIPTION, answer, question);
 }
 
 fn gen_progression(

@@ -19,3 +19,22 @@ pub enum Games {
     /// Brain Progression
     Progression,
 }
+
+fn start_game(name: &str, description: &str, answer: String, question: String) {
+    println!("Welcome to the {}", name);
+    println!("{}", description);
+
+    println!("{}", question);
+
+    let mut user_answer = String::new();
+    std::io::stdin().read_line(&mut user_answer).unwrap();
+
+    user_answer = user_answer.trim().to_lowercase();
+
+    if user_answer == answer {
+        println!("You win!");
+    } else {
+        println!("You lose!");
+        println!("Correct answer: {}", answer);
+    }
+}
