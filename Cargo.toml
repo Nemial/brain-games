@@ -8,3 +8,6 @@ keywords = ["games", "study"]
 [dependencies]
 clap = { version = "4.5.21", features = ["derive"] }
 rand = "0.8.5"
+
+[profile.release]
+strip = true
