@@ -22,3 +22,10 @@ fn find_gcd(first_num: usize, second_num: usize) -> usize {
         second_num
     }
 }
+
+#[test]
+fn check_find_gcd() {
+    assert_eq!(find_gcd(57, 4), 1);
+    assert_eq!(find_gcd(58, 8), 2);
+    assert_eq!(find_gcd(8, 4), 4);
+}

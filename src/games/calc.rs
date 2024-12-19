@@ -12,7 +12,9 @@ pub fn start() {
     let first_operand: usize = rng.gen_range(0..512);
     let second_operand: usize = rng.gen_range(0..first_operand);
 
-    let operation = operations.choose(&mut rng).unwrap();
+    let operation = operations
+        .choose(&mut rng)
+        .expect("Fail return random operation");
 
     let expression = format!("{} {} {}", first_operand, operation, second_operand);
     let expression_result = get_expression_result(first_operand, second_operand, operation);
@@ -32,4 +34,17 @@ fn get_expression_result(first_operand: usize, second_operand: usize, operation:
         '-' => first_operand - second_operand,
         _ => panic!("Unrecognized operation {}", operation),
     }
+}
+
+#[test]
+fn check_expression_result() {
+    assert_eq!(get_expression_result(2, 2, &'*'), 4);
+    assert_eq!(get_expression_result(2, 2, &'-'), 0);
+    assert_eq!(get_expression_result(2, 5, &'+'), 7);
+}
+
+#[test]
+#[should_panic]
+fn check_panic_result() {
+    get_expression_result(2, 2, &'A');
 }
