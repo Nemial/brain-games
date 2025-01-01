@@ -23,9 +23,14 @@ fn find_gcd(first_num: usize, second_num: usize) -> usize {
     }
 }
 
-#[test]
-fn check_find_gcd() {
-    assert_eq!(find_gcd(57, 4), 1);
-    assert_eq!(find_gcd(58, 8), 2);
-    assert_eq!(find_gcd(8, 4), 4);
+#[cfg(test)]
+mod tests {
+    use crate::games::gcd::find_gcd;
+
+    #[test]
+    fn check_find_gcd() {
+        assert_eq!(find_gcd(57, 4), 1);
+        assert_eq!(find_gcd(58, 8), 2);
+        assert_eq!(find_gcd(8, 4), 4);
+    }
 }

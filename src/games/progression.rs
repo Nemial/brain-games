@@ -52,13 +52,19 @@ fn gen_progression(
     progression
 }
 
-#[test]
-fn check_gen_progression() {
-    let mut expected = BTreeMap::new();
-    expected.insert(0, "1".to_string());
-    expected.insert(1, "2".to_string());
-    expected.insert(2, "3".to_string());
+#[cfg(test)]
+mod tests {
+    use crate::games::progression::gen_progression;
+    use std::collections::BTreeMap;
 
-    assert_eq!(gen_progression(1, 3, 1), expected);
-    assert_eq!(gen_progression(1, 0, 10), BTreeMap::new())
+    #[test]
+    fn check_gen_progression() {
+        let mut expected = BTreeMap::new();
+        expected.insert(0, "1".to_string());
+        expected.insert(1, "2".to_string());
+        expected.insert(2, "3".to_string());
+
+        assert_eq!(gen_progression(1, 3, 1), expected);
+        assert_eq!(gen_progression(1, 0, 10), BTreeMap::new())
+    }
 }

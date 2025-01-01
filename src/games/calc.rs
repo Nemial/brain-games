@@ -39,15 +39,20 @@ fn get_expression_result(first_operand: usize, second_operand: usize, operation:
     }
 }
 
-#[test]
-fn check_expression_result() {
-    assert_eq!(get_expression_result(2, 2, '*'), 4);
-    assert_eq!(get_expression_result(2, 2, '-'), 0);
-    assert_eq!(get_expression_result(2, 5, '+'), 7);
-}
+#[cfg(test)]
+mod tests {
+    use crate::games::calc::get_expression_result;
 
-#[test]
-#[should_panic]
-fn check_panic_result() {
-    get_expression_result(2, 2, 'A');
+    #[test]
+    fn check_expression_result() {
+        assert_eq!(get_expression_result(2, 2, '*'), 4);
+        assert_eq!(get_expression_result(2, 2, '-'), 0);
+        assert_eq!(get_expression_result(2, 5, '+'), 7);
+    }
+
+    #[test]
+    #[should_panic]
+    fn check_panic_result() {
+        get_expression_result(2, 2, 'A');
+    }
 }

@@ -15,8 +15,13 @@ fn is_even(num: i32) -> bool {
     num % 2 == 0
 }
 
-#[test]
-fn check_is_even() {
-    assert!(is_even(10));
-    assert!(!is_even(9));
+#[cfg(test)]
+mod tests {
+    use crate::games::even::is_even;
+
+    #[test]
+    fn check_is_even() {
+        assert!(is_even(10));
+        assert!(!is_even(9));
+    }
 }

@@ -26,10 +26,15 @@ fn is_prime(num: usize) -> bool {
     true
 }
 
-#[test]
-fn check_is_prime() {
-    assert!(!is_prime(1));
-    assert!(!is_prime(12));
-    assert!(is_prime(19));
-    assert!(is_prime(23))
+#[cfg(test)]
+mod tests {
+    use crate::games::prime::is_prime;
+
+    #[test]
+    fn check_is_prime() {
+        assert!(!is_prime(1));
+        assert!(!is_prime(12));
+        assert!(is_prime(19));
+        assert!(is_prime(23))
+    }
 }
