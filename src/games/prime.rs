@@ -7,17 +7,9 @@ const GAME_DESCRIPTION: &str = "Answer 'yes' if given number is prime. Otherwise
 pub fn start() {
     let num: usize = rand::thread_rng().gen_range(1..512);
 
-    let answer = match is_prime(num) {
-        true => "yes",
-        false => "no",
-    };
+    let answer = if is_prime(num) { "yes" } else { "no" };
 
-    start_game(
-        GAME_NAME,
-        GAME_DESCRIPTION,
-        answer.to_string(),
-        num.to_string(),
-    );
+    start_game(GAME_NAME, GAME_DESCRIPTION, answer, &num.to_string());
 }
 
 fn is_prime(num: usize) -> bool {

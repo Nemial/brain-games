@@ -5,6 +5,8 @@ use std::collections::BTreeMap;
 const GAME_NAME: &str = "Brain Progression";
 const GAME_DESCRIPTION: &str = "What number is missing in the progression?";
 
+/// # Panics
+/// This function will panic if it does not get value progression.
 pub fn start() {
     let mut rng = rand::thread_rng();
     let progression_length: usize = 10;
@@ -24,12 +26,12 @@ pub fn start() {
 
     let mut question = String::new();
 
-    for (_, value) in progression.iter() {
+    for value in progression.values() {
         question.push_str(value);
-        question.push_str(" ");
+        question.push(' ');
     }
 
-    start_game(GAME_NAME, GAME_DESCRIPTION, answer, question);
+    start_game(GAME_NAME, GAME_DESCRIPTION, &answer, &question);
 }
 
 fn gen_progression(

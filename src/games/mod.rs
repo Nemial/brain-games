@@ -20,11 +20,11 @@ pub enum Games {
     Progression,
 }
 
-fn start_game(name: &str, description: &str, answer: String, question: String) {
-    println!("Welcome to the {}", name);
-    println!("{}", description);
+fn start_game(name: &str, description: &str, answer: &str, question: &str) {
+    println!("Welcome to the {name}");
+    println!("{description}");
 
-    println!("{}", question);
+    println!("{question}");
 
     let mut user_answer = String::new();
     std::io::stdin().read_line(&mut user_answer).unwrap();
@@ -35,6 +35,6 @@ fn start_game(name: &str, description: &str, answer: String, question: String) {
         println!("You win!");
     } else {
         println!("You lose!");
-        println!("Correct answer: {}", answer);
+        println!("Correct answer: {answer}");
     }
 }

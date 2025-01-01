@@ -9,10 +9,10 @@ pub fn start() {
     let first_num: usize = rng.gen_range(1..256);
     let second_num: usize = rng.gen_range(1..first_num);
 
-    let question = format!("{} {}", first_num, second_num);
+    let question = format!("{first_num} {second_num}");
     let answer = find_gcd(first_num, second_num);
 
-    start_game(GAME_NAME, GAME_DESCRIPTION, answer.to_string(), question);
+    start_game(GAME_NAME, GAME_DESCRIPTION, &answer.to_string(), &question);
 }
 
 fn find_gcd(first_num: usize, second_num: usize) -> usize {
